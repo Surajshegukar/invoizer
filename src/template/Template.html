@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    media print{
+        body{
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+        .main{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .invoice{
+            width: 70%;
+            
+        }
+        
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid black;
+            padding: 10px;
+            
+        }
+        th{
+            text-align: left;
+        }
+        span{
+            width: 50%;
+         
+        }
+        .mid-table{
+            margin-bottom: 10px;
+        }
+        .border-less > td{
+            border: none;
+            
+        }
+        .border-less{
+            border: 1px outset black;
+        }
+        .footer{
+            margin-top: 10px;
+        }
+        .sign{
+            width: 35%;
+            margin-left: 65% ;
+           
+        }
+        .heading{
+            font-size: 30px;
+            font-weight: bold;
+        }
+    }
+    .body{
+        margin: 0;
+        padding: 0;
+    }
+    .main{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .invoice{
+        width: 90%;
+        
+    }
+    
+    table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th,td{
+        border: 1px solid black;
+        padding: 10px;
+        
+    }
+    th{
+        text-align: left;
+    }
+    span{
+        width: 50%;
+     
+    }
+    .mid-table{
+        margin-bottom: 10px;
+        border: 1px outset black;
+        
+        
+    }
+    
+    .border-less > td{
+        border: none;
+        
+    }
+    .border-less{
+        border: 1px outset black;
+    }
+    .footer{
+        margin-top: 10px;
+    }
+    .sign{
+        width: 35%;
+        margin-left: 65% ;
+       
+    }
+    .heading{
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+</style>
+<body>
+    <div class="main">
+        <p style="font-size: 30px;"><b>Receipt</b></p>
+        <div class="invoice">
+            <table class="header">
+                <tr>
+                    <td class="heading">Bordikars Podar Learn School</td>
+                </tr>
+                <tr>
+                    <td>Phone : <b>9960178607</b></td>
+                </tr>
+            </table>
+            <table class="mid-table">
+                <tr>
+                    <th colspan="50%">Bill To :</th>
+                    <th>Invoice Details :</th>
+                </tr>
+                <tr>
+                    <td colspan="50%"><b>Student</b></td>
+                    <td>No: 3</td>
+                </tr>
+                <tr>
+                    <td colspan="25%" >
+                        Contact : <b>789456123</b>
+                    </td>
+                    <td colspan="25%">
+                        Student id : <b>00145698</b>
+                    </td>
+                    <td colspan="50%">
+                        Date: <b>12/12/2020</b>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="50%">Class: <b>6th</b></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Item name</th>
+                    
+                    <th style="text-align: end;">Divident</th>
+                    <th style="text-align: end;">Fees</th>
+                    <th style="text-align: end;">Discount</th>
+                    <th style="text-align: end;">Amount</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Admission Fees</td>
+                    <td style="text-align: end;">1</td>
+                    <td style="text-align: end;">500</td>
+                    <td style="text-align: end;">0%</td>
+                    <td style="text-align: end;">500</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Book Fees</td>
+                    
+                    <td style="text-align: end;">1</td>
+                    <td style="text-align: end;">500</td>
+                    <td style="text-align: end;">0%</td>
+                    <td style="text-align: end;">500</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Registration Fees</td>
+                    
+                    <td style="text-align: end;">1</td>
+                    <td style="text-align: end;">500</td>
+                    <td style="text-align: end;">0%</td>
+                    <td style="text-align: end;">500</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Tution Fees</td>
+                    
+                    <td style="text-align: end;">1</td>
+                    <td style="text-align: end;">51000</td>
+                    <td style="text-align: end;">10%</td>
+                    <td style="text-align: end;">45000</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td >Total</td>
+                    <td></td>
+                    
+                    <td></td>
+                    <td style="text-align: end;">51000</td>
+                    <td style="text-align: end;">47400</td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>Sub Total</td>
+                    <td style="text-align: end;">47400</td>
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td style="text-align: end;">47400</td>
+                </tr>
+                <tr>
+                    <td colspan="100%"><b>Invoice amount in words</b></td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="100%">Fourty Seven Thousand Four Hundred Rupee Only</td>
+                    
+                </tr>
+                <tr class="border-less">
+                    <td>
+                        Received by
+                    </td>
+                    <td style="text-align: end;">
+                        20000
+                    </td>
+                </tr>
+                <tr class="border-less">
+                    <td>
+                        Balance
+                    </td>
+                    <td style="text-align: end;">
+                        27400
+                    </td>
+                </tr>
+                <tr class="border-less">
+                    <td>
+                       <b> You Saved</b>
+                    </td>
+                    <td style="text-align: end;">
+                        3600
+                    </td>
+                </tr>
+            </table>
+            <table class="footer">
+                <tr>
+                    <td><b>Terms & Condition</b></td>
+                </tr>
+                <tr>
+                    <td>Thanks for doing bussiness with us!</td>
+                </tr>
+            </table>
+            <table class="sign">
+                <tr>
+                    <td><b>For Bodikars Podar Learn School</b></td>
+                </tr>
+                <tr>
+                    <td style="height: 90px;">Authorized Signature</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

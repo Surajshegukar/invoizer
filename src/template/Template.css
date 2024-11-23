@@ -1,0 +1,66 @@
+
+
+    .body{
+        margin: 0;
+        padding: 0;
+    }
+    .main{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .invoice{
+        width: 90%;
+        min-width: 90%;
+        margin: 15px;
+        
+    }
+    
+    table{
+        width: 100%;
+        min-width: 100%;
+        border-collapse: collapse;
+    }
+    th,td{
+        border: 1px solid black;
+        padding: 10px;
+        
+    }
+    th{
+        text-align: left;
+    }
+    span{
+        width: 50%;
+        min-width: 50%;
+     
+    }
+    .mid-table{
+        margin-bottom: 10px;
+        border: 1px outset black;
+        
+        
+    }
+    
+    .border-less > td{
+        border: none;
+        
+    }
+    .border-less{
+        border: 1px outset black;
+    }
+    .footer{
+        margin-top: 10px;
+    }
+    .sign{
+        width: 35%;
+        min-width: 35%;
+
+        margin-left: 65% ;
+       
+    }
+    .heading{
+        font-size: 30px;
+        font-weight: bold;
+    }
