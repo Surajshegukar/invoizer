@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 // require('dotenv').config();
 
 const JWT_Secret = 'your_secret_key';
-console.log(JWT_Secret);
+// console.log(JWT_Secret);
 
 
 const fetchUser = async (req, res, next) => {
