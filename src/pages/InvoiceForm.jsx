@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const dummyStudents = [
   { id: "1", studentName: "John Doe", studentContact: "1234567890", studentID: "S123", studentClass: "12" },
   { id: "2", studentName: "Jane Smith", studentContact: "0987654321", studentID: "S124", studentClass: "11" },
-  { id: "3", studentName: "Michael Brown", studentContact: "5678901234", studentID: "S125", studentClass: "10" },
+  {d: "3", studentName: "Michael Brown", studentContact: "5678901234", studentID: "S125", studentClass: "10" },
 ];
 
 const dummyItems = [
@@ -49,6 +49,9 @@ const InvoiceForm = ({ invoice, setInvoice, items, setItems,handleSubmit }) => {
   };
 
   const handleOnStudentSelect = (e) => {
+    if (e.target.value === " ") {
+      return;
+    }
     const student = students.find((student) => student._id === e.target.value);
     console.log("student : ",student);
     setInvoice((prev) => ({
@@ -132,7 +135,7 @@ const InvoiceForm = ({ invoice, setInvoice, items, setItems,handleSubmit }) => {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           required
         >
-          <option value="">Select Student</option>
+          <option value={" "} >Select Student</option>
           {students.map((student) => (
             <option key={student.id} value={student._id}>
               {student.studentName} (Class {student.studentClass})

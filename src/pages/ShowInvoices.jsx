@@ -10,6 +10,7 @@ import { fetchItems } from '../store/itemsSlice';
 import { fetchStudents } from '../store/studentsSlice';
 import EditInvoiceForm from './EditInvoiceForm';
 import LoadingModel from './LoadingModel';
+import { useCookies } from 'react-cookie';
 
 
 const ShowInvoices = () => {
@@ -17,6 +18,7 @@ const ShowInvoices = () => {
   const invoices = useSelector(state => state.invoice.invoices);
   const students = useSelector(state => state.student.students);
   const items = useSelector(state => state.items.items);
+  const [cookies, setCookie] = useCookies(['user']);
 
   const invoiceLoading = useSelector(state => state.invoice.loading)
   const studentsLoading = useSelector(state => state.student.loading)
@@ -140,6 +142,15 @@ const ShowInvoices = () => {
       setSearchResults(processedInvoices.filter(invoice => invoice[searchParameter].toLowerCase().includes(searchValue.toLowerCase())));
     }
   }, [searchValue, searchParameter, processedInvoices]);
+
+
+  useEffect(() => {
+    if (!cookies.user) {
+      window.location.href = '/login';
+    }
+  }
+  , [cookies.user]);
+  
 
 
   

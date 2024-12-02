@@ -7,7 +7,7 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
             // 'authorization': localStorage.getItem('token'),
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -21,7 +21,7 @@ export const addItem = createAsyncThunk('items/addItem', async (item) => {
         body: JSON.stringify(item),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -34,7 +34,7 @@ export const deleteItem = createAsyncThunk('items/deleteItem', async (itemId) =>
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -48,7 +48,7 @@ export const updateItem = createAsyncThunk('items/updateItem', async (item) => {
         body: JSON.stringify(item),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
             
         },
     });
@@ -65,18 +65,18 @@ export const itemsSlice = createSlice({
         items: [
             {
                 _id: '1',
-                name: 'item1',
-                price: 100
+                itemName: 'item1',
+                fees: 100
             },
             {
                 _id: '2',
-                name: 'item2',
-                price: 200
+                itemName: 'item2',
+                fees: 200
             },
             {
                 _id: '3',
-                name: 'item3',
-                price: 300
+                itemName: 'item3',
+                fees: 300
             },
             
         ],

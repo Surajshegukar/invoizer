@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
-import { Bell, CreditCard, DollarSign, Download, Users, Menu, Search } from 'lucide-react'
+import { Bell, CreditCard, DollarSign, Download, Users, Menu, Search, Cookie } from 'lucide-react'
+import { useCookies } from 'react-cookie';
 
 // Mock data for the chart
 const chartData = [
@@ -25,6 +26,14 @@ const recentInvoices = [
 export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [cookies, setCookie] = useCookies(['user']);
+  
+  useEffect(() => {
+    if(!cookies.user) {
+      window.location.href = '/login';
+    }
+  }
+  , []);
 
   return (
     <div className="flex h-screen bg-gray-100">

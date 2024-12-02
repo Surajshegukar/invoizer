@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents } from "../store/studentsSlice";
 import { fetchInvoices } from "../store/invoiceSlice";
 import Template from '../template/Template';
+import { useCookies } from "react-cookie";
 
 
 export default function StuProfile() {
@@ -14,6 +15,7 @@ export default function StuProfile() {
   const dispatch = useDispatch();
   const [isPreviewModalOpen,setIsPreviewModalOpen]= useState(false);
   const [previewInvoice,setPreviewInvoice] = useState(null);
+  const [cookies, setCookie] = useCookies(['user']);
 
   // Dummy invoice data
   const invoiceslist = useSelector((state) => state.invoice.invoices);
@@ -28,6 +30,13 @@ export default function StuProfile() {
     dispatch(fetchStudents());
     dispatch(fetchInvoices());
   }, []);
+
+  useEffect(() => {
+    if(!cookies.user) {
+      window.location.href = '/login';
+    }
+  }
+  , []);
 
   const handlePreview =(e,invoice)=>{
     // e.preventDefault();

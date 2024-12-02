@@ -1,8 +1,27 @@
-import React from 'react'
-import 'flowbite'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import 'flowbite';
+import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 function NavSideBar() {
+  const [cookies, setCookie] = useCookies(['user']);
+  const handleLogout = () => {
+    setCookie('user', '', { path: '/' });
+  }
+
+useEffect(() => {
+  if (!cookies.user && window.location.pathname !== '/login') {
+    alert('You need to login first');
+    window.location.href = '/login';
+  }
+}
+, [cookies.user]);
+
+
+
+
+
+
   return (
     <>
 
@@ -33,6 +52,9 @@ function NavSideBar() {
               </li>
               <li>
                 <Link to = {'/'} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Edit Profile</Link>
+              </li>
+              <li>
+                <Link to = {'/login'} onClick={handleLogout} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Sign out</Link>
               </li>
             </ul>
           </div>

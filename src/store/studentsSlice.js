@@ -6,7 +6,7 @@ export const fetchStudents = createAsyncThunk('students/fetchStudents', async ()
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
             // 'authorization': localStorage.getItem('token'),
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -20,7 +20,7 @@ export const addStudent = createAsyncThunk('students/addStudent', async (student
         body: JSON.stringify(student),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -33,7 +33,7 @@ export const deleteStudent = createAsyncThunk('students/deleteStudent', async (s
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
         },
     });
     const data = await response.json();
@@ -47,7 +47,7 @@ export const updateStudent = createAsyncThunk('students/updateStudent', async (s
         body: JSON.stringify(student),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjI5NSwiZXhwIjoxNzMzMTU3MDk1fQ.3lZMPlCRGtSHY0l_7_kCArpuTQ881tKIm"
+            'authorization':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
             
         },
     });

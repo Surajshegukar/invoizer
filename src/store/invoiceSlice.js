@@ -13,7 +13,7 @@ export const fetchInvoices = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const msg = await response.json();
@@ -29,7 +29,7 @@ export const fetchAllInvoices = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -45,7 +45,7 @@ export const fetchInvoiceById = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -61,7 +61,7 @@ export const fetchInvoiceByStudentId = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -77,7 +77,7 @@ export const fetchInvoiceByStudentName = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -94,7 +94,7 @@ export const fetchInvoiceByDate = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -110,7 +110,7 @@ export const fetchInvoiceByClass = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -130,6 +130,7 @@ export const addInvoice = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
+                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
                 
 
             },
@@ -147,7 +148,7 @@ export const deleteInvoice = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();
@@ -164,7 +165,7 @@ export const updateInvoice = createAsyncThunk(
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               authorization :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjU1MjgxMSwiZXhwIjoxNzMzMTU3NjExfQ.75bxavOAznHJ2Sr-65hCnXZBcufzJX20h_oL'
+               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
             },
         });
         const data = await response.json();

@@ -8,17 +8,21 @@ import { updateItem } from '../store/itemsSlice'
 import { deleteItem } from '../store/itemsSlice'
 import { useState } from 'react'
 import LoadingModel from './LoadingModel'
+import { useCookies } from 'react-cookie'
 
 
 function Items() {
-  const dispatch = useDispatch()
-  const itemsList = useSelector(state => state.items.items)
-  const [items,setItems] = useState(itemsList);
+  const dispatch = useDispatch();
+  const itemsList = useSelector(state => state.items.items);
+  // const [items,setItems] = useState(itemsList);
   const [search,setSearch] = useState('');
+  const [isSearch,setIsSearch] = useState(false);
+  const [cookies, setCookie] = useCookies(['user']);
   
   const loading = useSelector(state => state.items.loading)
 
   const handleItemSearch = (e) => {
+    e.target.value === '' ? setIsSearch(false) : setIsSearch(true);
     setSearch(e.target.value);
   }
 
@@ -39,8 +43,9 @@ const handleEditItemSubmit = (e) => {
   dispatch(updateItem(editItem)).then(() => {
     setIsEditModalOpen(false);
     setEditItem({});
+    setReload(!reload);
   });
-  setReload(!reload);
+  
   
   
 }
@@ -89,23 +94,18 @@ const handleDeleteConfirm = (item) => {
   }
 
   useEffect(() => {
-    dispatch(fetchItems()).then(() => {
-      setItems(itemsList);
-    }
-    );
+    dispatch(fetchItems());
 
   }
-  , [reload])
+  , [reload,dispatch])
 
+  useEffect(() => {
+    if(!cookies.user) {
+      window.location.href = '/login';
+    }
+  }
+  , []);
 
-  useEffect(()=>{
-    if (search ==='') {
-      setItems(itemsList);
-    }
-    else {
-      setItems(itemsList.filter(item => item.itemName.toLowerCase().includes(search.toLowerCase())))
-    }
-  },[search])
 
 
   return (
@@ -139,7 +139,7 @@ const handleDeleteConfirm = (item) => {
           <tbody>
            
             
-            {items && items.map((item, index) => (
+            {itemsList && itemsList.map((item, index) => (
               <tr key={item.id} className="border-b border-gray-200 dark:border-gray-700">
                 <td className="py-3 px-4">{index + 1}</td>
                 <td className="py-3 px-4">{item.itemName}</td>
@@ -160,7 +160,7 @@ const handleDeleteConfirm = (item) => {
             }
         
             {
-              items && items.length === 0 && <tr><td className='text-center' colSpan={6}>No items found</td></tr>
+              itemsList && itemsList.length === 0 && <tr><td className='text-center' colSpan={6}>No items found</td></tr>
             }
           </tbody>
         </table>

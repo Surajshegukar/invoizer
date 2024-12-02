@@ -7,12 +7,21 @@ import InvoiceForm from "./InvoiceForm";
 import { addInvoice } from "../store/invoiceSlice";
 import { fetchStudents } from "../store/studentsSlice";
 import { fetchItems } from "../store/itemsSlice";
+import { useCookies } from "react-cookie";
 
 const Invoice = () => {
   const invoiceRef = useRef(null);
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.invoice.loading);
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const [cookies, setCookie] = useCookies(['user']);
+
+  useEffect(() => {
+    if(!cookies.user) {
+      window.location.href = '/login';
+    }
+  }
+  , []);
 
   const [invoice, setInvoice] = useState({
     invoiceNumber: "INV-0001",

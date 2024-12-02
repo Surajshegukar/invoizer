@@ -7,6 +7,7 @@ import { addStudent as addStudentFxn } from '../store/studentsSlice'
 import { updateStudent } from '../store/studentsSlice'
 import { deleteStudent } from '../store/studentsSlice'
 import { useState } from 'react'
+import {useCookies } from 'react-cookie'
 
 function Student() {
   
@@ -14,7 +15,7 @@ function Student() {
   const dispatch = useDispatch()
   const students = useSelector(state => state.student.students)
   const loading = useSelector(state => state.student.loading)
-
+  const [cookies, setCookie] = useCookies(['user']);
   // const [students,setStudents] = useState(null)
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
@@ -30,16 +31,15 @@ function Student() {
     setSearch(e.target.value);
   }
 
-
-
   useEffect(() => {
-    if(search === ''){
-      setReload(!reload);
+    if(!cookies.user) {
+      window.location.href = '/login';
     }
-    else{
-      students =students.filter(student => student.studentName.toLowerCase().includes(search.toLowerCase()));
-    }
-  }, [search])
+  }, []);
+
+
+
+
 
   const handleAddStudent = (e) => {
     e.preventDefault();

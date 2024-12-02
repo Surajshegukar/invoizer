@@ -11,6 +11,8 @@ import Footer from './components/Footer'
 import Student from './pages/Student'
 import StuProfile from './pages/StuProfile'
 import Statement from './pages/Statement'
+import AuthForm from './pages/AuthForm'
+import { LogIn } from 'lucide-react'
 
 
 function App() {
@@ -22,19 +24,22 @@ function App() {
         <NavSideBar />
         <Routes>
           <Route path="/home" element={<Dashboard />} />
-          <Route path = '/' element = {<Dashboard />} />
+          <Route path = '/' element = {<LogIn />} />
           <Route path="/add-invoice" element={<Invoice />} />
           <Route path="/show-invoices" element={<ShowInvoices />} />
           <Route path = "/add-items" element = {<Items />} />
           <Route path = "/student" element = {<Student />} />
           <Route path = "/student-profile" element = {<StuProfile />} />
           <Route path = "/statements" element = {<Statement />} />
+          <Route path = "/login" element = {<AuthForm />} />
           {/* Not Found */}
           <Route path="*" element={<NotFound />} />
 
         </Routes>
+        
         <Footer />
       </Router>
+      
 
     </>
   )
