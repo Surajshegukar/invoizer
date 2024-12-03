@@ -2,18 +2,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
+import { base_url } from '../config';
+import {token} from '../config';
 
 // api call
 
 export const fetchInvoices = createAsyncThunk(
     'invoices/fetchInvoices',
-    async () => {
-        const response = await fetch('http://localhost:5000/api/invoice/get-lastest-invoices',{
+    async() => {
+        const response = await fetch(`${base_url}/api/invoice/get-lastest-invoices`,{
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const msg = await response.json();
@@ -23,13 +25,13 @@ export const fetchInvoices = createAsyncThunk(
 
 export const fetchAllInvoices = createAsyncThunk(
     'invoices/fetchAllInvoices',
-    async () => {
-        const response = await fetch('http://localhost:5000/api/invoice/get-all-invoices', {
+    async() => {
+        const response = await fetch(`${base_url}/api/invoice/get-all-invoices`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const data = await response.json();
@@ -39,13 +41,13 @@ export const fetchAllInvoices = createAsyncThunk(
 
 export const fetchInvoiceById = createAsyncThunk(
     'invoices/fetchInvoiceById',
-    async (invoiceId) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/get-invoice/${invoiceId}`, {
+    async(invoiceId) => {
+        const response = await fetch(`${base_url}/api/invoice/get-invoice/${invoiceId}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const data = await response.json();
@@ -55,13 +57,13 @@ export const fetchInvoiceById = createAsyncThunk(
 
 export const fetchInvoiceByStudentId = createAsyncThunk(
     'invoices/fetchInvoiceByStudentId',
-    async (studentId) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/get-invoice-by-student-id/${studentId}`, {
+    async(studentId) => {
+        const response = await fetch(`${base_url}/api/invoice/get-invoice-by-student-id/${studentId}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const data = await response.json();
@@ -71,13 +73,13 @@ export const fetchInvoiceByStudentId = createAsyncThunk(
 
 export const fetchInvoiceByStudentName = createAsyncThunk(
     'invoices/fetchInvoiceByStudentName',
-    async (studentName) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/get-invoices-by-student-name/${studentName}`, {
+    async(studentName) => {
+        const response = await fetch(`${base_url}/api/invoice/get-invoices-by-student-name/${studentName}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const data = await response.json();
@@ -88,13 +90,13 @@ export const fetchInvoiceByStudentName = createAsyncThunk(
 
 export const fetchInvoiceByDate = createAsyncThunk(
     'invoices/fetchInvoiceByDate',
-    async (date) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/get-invoice-by-date/${date}`, {
+    async(date) => {
+        const response = await fetch(`${base_url}/api/invoice/get-invoice-by-date/${date}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+               'authorization' :token
             },
         });
         const data = await response.json();
@@ -104,13 +106,13 @@ export const fetchInvoiceByDate = createAsyncThunk(
 
 export const fetchInvoiceByClass = createAsyncThunk(
     'invoices/fetchInvoiceByClass',
-    async (studentClass) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/get-invoice-by-class/${studentClass}`, {
+    async(studentClass) => {
+        const response = await fetch(`${base_url}/api/invoice/get-invoice-by-class/${studentClass}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
             },
         });
         const data = await response.json();
@@ -123,14 +125,14 @@ export const fetchInvoiceByClass = createAsyncThunk(
 
 export const addInvoice = createAsyncThunk(
     'invoices/addInvoice',
-    async (invoice) => {
-        const response = await fetch('http://localhost:5000/api/invoice/add-invoice', {
+    async(invoice) => {
+        const response = await fetch(`${base_url}/api/invoice/add-invoice`, {
             method: 'POST',
             body: JSON.stringify(invoice),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-                'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+                'authorization' :token
                 
 
             },
@@ -142,13 +144,13 @@ export const addInvoice = createAsyncThunk(
 
 export const deleteInvoice = createAsyncThunk(
     'invoices/deleteInvoice',
-    async (invoiceId) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/delete-invoice/${invoiceId}`, {
+    async(invoiceId) => {
+        const response = await fetch(`${base_url}/api/invoice/delete-invoice/${invoiceId}`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+               'authorization' :token
             },
         });
         const data = await response.json();
@@ -158,14 +160,14 @@ export const deleteInvoice = createAsyncThunk(
 
 export const updateInvoice = createAsyncThunk(
     'invoices/updateInvoice',
-    async (invoice) => {
-        const response = await fetch(`http://localhost:5000/api/invoice/update-invoice/${invoice._id}`, {
+    async(invoice) => {
+        const response = await fetch(`${base_url}/api/invoice/update-invoice/${invoice._id}`, {
             method: 'PUT',
             body: JSON.stringify(invoice),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 // 'authorization': localStorage.getItem('token'),
-               'authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ'
+               'authorization' : token
             },
         });
         const data = await response.json();

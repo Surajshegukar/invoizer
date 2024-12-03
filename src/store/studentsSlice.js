@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { base_url } from '../config';
+import { token } from '../config';
 
-export const fetchStudents = createAsyncThunk('students/fetchStudents', async () => {
-    const response = await fetch('http://localhost:5000/api/student/get-students',{
+
+export const fetchStudents = createAsyncThunk('students/fetchStudents', async() => {
+    const response = await fetch(`${base_url}/api/student/get-students`,{
         method: 'GET',
-        headers: {z
+        headers: {
             'Content-type': 'application/json; charset=UTF-8',
             // 'authorization': localStorage.getItem('token'),
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
+            'authorization': token
         },
     });
     const data = await response.json();
@@ -14,13 +17,13 @@ export const fetchStudents = createAsyncThunk('students/fetchStudents', async ()
 }
 );
 
-export const addStudent = createAsyncThunk('students/addStudent', async (student) => {
-    const response = await fetch('http://localhost:5000/api/student/add-student', {
+export const addStudent = createAsyncThunk('students/addStudent', async(student) => {
+    const response = await fetch(`${base_url}/api/student/add-student`, {
         method: 'POST',
         body: JSON.stringify(student),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
+            'authorization': token
         },
     });
     const data = await response.json();
@@ -28,12 +31,12 @@ export const addStudent = createAsyncThunk('students/addStudent', async (student
 }
 );
 
-export const deleteStudent = createAsyncThunk('students/deleteStudent', async (studentId) => {
-    const response = await fetch(`http://localhost:5000/api/student/delete-student/${studentId}`, {
+export const deleteStudent = createAsyncThunk('students/deleteStudent', async(studentId) => {
+    const response = await fetch(`${base_url}/api/student/delete-student/${studentId}`, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
+            'authorization': token
         },
     });
     const data = await response.json();
@@ -41,13 +44,13 @@ export const deleteStudent = createAsyncThunk('students/deleteStudent', async (s
 }
 );
 
-export const updateStudent = createAsyncThunk('students/updateStudent', async (student) => {
-    const response = await fetch(`http://localhost:5000/api/student/update-student/${student._id}`, {
+export const updateStudent = createAsyncThunk('students/updateStudent', async(student) => {
+    const response = await fetch(`${base_url}/api/student/update-student/${student._id}`, {
         method: 'PUT',
         body: JSON.stringify(student),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'authorization':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjRiMjlkOTIxYmRiZWM2YzY4Y2E3MyIsImlhdCI6MTczMjk0NDUyMSwiZXhwIjoxNzMzNTQ5MzIxfQ.O8-uatWLBzrPF_t-4FZgdJfyZg0yTstgTZIy4ObWCDQ"
+            'authorization':token
             
         },
     });

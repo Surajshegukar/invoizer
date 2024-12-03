@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-// require('dotenv').config();
+require('dotenv').config();
 
 const connectDB = async () => {
     try{
-        const conn = await mongoose.connect("mongodb://localhost:27017/invoizer",{
+        const conn = await mongoose.connect(process.env.MongoDB,{
             useNewUrlParser:true,
             useUnifiedTopology:true,
             

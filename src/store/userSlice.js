@@ -1,15 +1,16 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
+import { base_url } from "../config";
+
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-    const response = await fetch('http://localhost:5000/api/auth/get-users');
+    const response = await fetch(`${base_url}/api/auth/get-users`);
     const data = await response.json();
     return data;
 }
 );
 
 export const loginUser = createAsyncThunk('user/login', async (user) => {
-    const response = await fetch('http://localhost:5000/api/auth/login'
-        , {
+    const response = await fetch(`${base_url}/api/auth/login`, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -22,7 +23,7 @@ export const loginUser = createAsyncThunk('user/login', async (user) => {
 );
 
 export const registerUser = createAsyncThunk('user/register', async (user) => {
-    const response = await fetch('http://localhost:5000/api/auth/register', {
+    const response = await fetch(`${base_url}/api/auth/register`, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -35,7 +36,7 @@ export const registerUser = createAsyncThunk('user/register', async (user) => {
 );
 
 export const updateUser = createAsyncThunk('user/updateUser', async (user) => {
-    const response = await fetch(`http://localhost:5000/api/user/update-user/${user.id}`, {
+    const response = await fetch(`${base_url}/api/user/update-user/${user.id}`, {
         method: 'PUT',
         body: JSON.stringify(user),
         headers: {
