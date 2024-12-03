@@ -310,6 +310,7 @@ const ShowInvoices = () => {
             </div>
             <div className="p-5">
               <Template invoice={previewInvoice} />
+              
             </div>
           </div>
         </div>

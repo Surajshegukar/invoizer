@@ -1,10 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 
+import jsPDF from "jspdf";
 const Invoice = (props) => {
 
     useEffect(() => {
         console.log("");
     }, [props]);
+
+    const invoiceRef = useRef(null);
+
+    const printInvoice = () => {
+      const input = invoiceRef.current;
+      input.style = "width: 900px; margin-left: 100px";
+      const pdf = new jsPDF("p", "pt", "c3");
+      pdf.html(input, {
+        callback: function (pdf) {
+          pdf.save("invoice.pdf");
+          input.style = "width: 690px; margin: 0 auto";
+        },
+      });
+    };
+
+
+
+
 
     const { invoice } = props;
     const invoiceData = {
@@ -28,7 +47,8 @@ const Invoice = (props) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto pt-2">
+    <>
+    <div ref={invoiceRef} className="max-w-2xl mx-auto pt-2">
       <h2 className="text-center font-bold text-xl mb-2">Receipt</h2>
       <div className="border border-b-0 border-gray-800 p-4">
         <h3 className="font-bold text-lg text-center">
@@ -158,6 +178,16 @@ const Invoice = (props) => {
 
       
     </div>
+
+    <div className="flex justify-center mt-4">
+      <button
+        onClick={printInvoice}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4"
+      >
+        Print Invoice
+      </button>
+    </div>
+    </>
   );
 };
 
