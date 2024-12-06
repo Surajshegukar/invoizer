@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import  { loginUser} from '../store/userSlice';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../store/userSlice';
 // import react-cookies
 import { useCookies } from 'react-cookie';
-import { redirect } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const AuthForm = () => {
@@ -12,6 +12,7 @@ const AuthForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [code, setCode] = useState('');
   const dispatch = useDispatch();
   // react-cookies
   const [cookies, setCookie] = useCookies(['user']);
@@ -29,32 +30,46 @@ const AuthForm = () => {
           console.log(data.payload);
           // react-cookies
           setCookie('user', data.payload.token, { path: '/' });
-          alert("User logged in successfully");
-          window.location.href = '/home';
+          toast.success("User logged in successfully");
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 2000);
         }
         else {
           console.log(data.payload);
-          alert(data.payload.message);
+          toast.error(data.payload.message);
         }
       });
     } else {
-      dispatch(registerUser({ email, password, name })).then((data) => {
+      dispatch(registerUser({ email, password, name,code })).then((data) => {
         if (data.payload.success === true) {
+          
           console.log(data.payload);
           // react-cookies
           setCookie('user', data.payload.token, { path: '/' });
-         alert("User registered successfully");
+          toast.success("User registered successfully");
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 2000);
+          
         }
         else {
           console.log(data.payload);
-          alert(data.payload.message);
+          toast.error(data.payload.message);
         }
       });
     }
 
   };
 
+  useEffect(() => {
+    toast.success("Welcome to Login Page");
+  }
+  , []);
+
   return (
+    <>
+    {/* <Toaster /> */}
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">
@@ -102,6 +117,22 @@ const AuthForm = () => {
               required
             />
           </div>
+          {/* input for signup code */}
+          {!isLogin && (
+            <div>
+              <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+                Code
+              </label>
+              <input
+                type="text"
+                id="code"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                required
+              />
+            </div>
+          )}
           <button
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -119,6 +150,7 @@ const AuthForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

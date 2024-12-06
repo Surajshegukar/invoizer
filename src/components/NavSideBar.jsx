@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import 'flowbite';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import logo from '../assets/logo.jpg';
+import toast, { Toaster } from 'react-hot-toast';
 
 function NavSideBar() {
   const [cookies, setCookie] = useCookies(['user']);
@@ -11,7 +13,6 @@ function NavSideBar() {
 
 useEffect(() => {
   if (!cookies.user && window.location.pathname !== '/login') {
-    alert('You need to login first');
     window.location.href = '/login';
   }
 }
@@ -24,12 +25,13 @@ useEffect(() => {
 
   return (
     <>
-
-    <nav class="bg-white border-gray-200 ">
+    
+    {window.location.pathname !== '/login' && (
+      <nav className='bg-white border-gray-200' >
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <Link href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap ">Invoice</span>
+      <Link href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src={logo} class="h-10 rounded-full" alt="Flowbite Logo " />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap ">Invoizer</span>
       </Link>
       <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -93,6 +95,12 @@ useEffect(() => {
       </div>
       </div>
     </nav>
+    )}
+
+    <Toaster position='top-right' reverseOrder={false} duration={4000} />
+
+    
+
     </>
   )
 }

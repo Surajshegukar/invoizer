@@ -9,6 +9,7 @@ import { deleteItem } from '../store/itemsSlice'
 import { useState } from 'react'
 import LoadingModel from './LoadingModel'
 import { useCookies } from 'react-cookie'
+import toast from 'react-hot-toast'
 
 
 function Items() {
@@ -40,10 +41,19 @@ const handleEditItem = (item) => {
 
 const handleEditItemSubmit = (e) => {
   e.preventDefault();
-  dispatch(updateItem(editItem)).then(() => {
+  dispatch(updateItem(editItem)).then((data) => {
     setIsEditModalOpen(false);
     setEditItem({});
     setReload(!reload);
+    if (data.payload.success === true) {
+      console.log(data.payload);
+      toast.success("Item updated successfully");
+    }
+    else {
+      console.log(data.payload);
+      toast.error(data.payload.message);
+    }
+
   });
   
   
@@ -55,13 +65,23 @@ const handleDeleteItem = (item) => {
   setIsDeleteModalOpen(true);
   // console.log('delete');
   // console.log(item._id);
+
 }
 
 const handleDeleteConfirm = (item) => {
-  dispatch(deleteItem(deleteItemId)).then(() => {
+  dispatch(deleteItem(deleteItemId)).then((data) => {
     setIsDeleteModalOpen(false);
     setReload(!reload);
     setDeleteItemId('');
+    if (data.payload.success === true) {
+      console.log(data.payload);
+      toast.success("Item deleted successfully");
+    }
+    else {
+      console.log(data.payload);
+      toast.error(data.payload.message);
+    }
+
   });
   
 }
@@ -78,10 +98,18 @@ const handleDeleteConfirm = (item) => {
 
   const handleAddItem = (e) => {
     e.preventDefault();
-    dispatch(addItem(AddItem)).then(() => {
+    dispatch(addItem(AddItem)).then((data) => {
       setIsAddModalOpen(false);
       setReload(!reload);
       setAddItem({});
+      if (data.payload.success === true) {
+        console.log(data.payload);
+        toast.success("Item added successfully");
+      }
+      else {
+        console.log(data.payload);
+        toast.error(data.payload.message);
+      }
     }
     );
   }
@@ -94,17 +122,22 @@ const handleDeleteConfirm = (item) => {
   }
 
   useEffect(() => {
-    dispatch(fetchItems());
+    dispatch(fetchItems()).then((data) => {
+      if (data.payload.success === true) {
+        toast.success("Items loaded successfully");
+
+      }
+      else {
+        console.log(data.payload);
+        toast.error(data.payload.message);
+      }
+    }
+    );
 
   }
   , [reload,dispatch])
 
-  useEffect(() => {
-    if(!cookies.user) {
-      window.location.href = '/login';
-    }
-  }
-  , []);
+
 
 
 

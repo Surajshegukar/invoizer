@@ -8,6 +8,7 @@ import { updateStudent } from '../store/studentsSlice'
 import { deleteStudent } from '../store/studentsSlice'
 import { useState } from 'react'
 import {useCookies } from 'react-cookie'
+import toast from 'react-hot-toast'
 
 function Student() {
   
@@ -31,22 +32,20 @@ function Student() {
     setSearch(e.target.value);
   }
 
-  useEffect(() => {
-    if(!cookies.user) {
-      window.location.href = '/login';
-    }
-  }, []);
-
-
-
-
 
   const handleAddStudent = (e) => {
     e.preventDefault();
-    dispatch(addStudentFxn(addStudent)).then(() => {
+    dispatch(addStudentFxn(addStudent)).then((data) => {
       setIsAddModalOpen(false);
       setReload(!reload);
       setAddStudent({});
+      if (data.payload.success === true) {
+        toast.success(data.payload.message);
+      }
+      else {
+        toast.error(data.payload.message);
+        console.log(data.payload);
+      }
     }
     );
   }
@@ -66,10 +65,17 @@ const handleEditStudent = (student) => {
 
 const handleEditStudentSubmit = (e) => {
   e.preventDefault();
-  dispatch(updateStudent(editStudent)).then(() => {
+  dispatch(updateStudent(editStudent)).then((data) => {
     setIsEditModalOpen(false);
     setReload(!reload);
     setEditStudent({});
+    if (data.payload.success === true) {
+      toast.success(data.payload.message);
+    }
+    else {
+      toast.error(data.payload.message);
+      console.log(data.payload);
+    }
   });
   
   
@@ -83,10 +89,18 @@ const handleDeleteStudent = (student) => {
 }
 
 const handleDeleteConfirm = (student) => {
-  dispatch(deleteStudent(deleteStudentId)).then(() => {
+  dispatch(deleteStudent(deleteStudentId)).then((data) => {
     setIsDeleteModalOpen(false);
     setReload(!reload);
     setDeleteStudentId('');
+    if (data.payload.success === true) {
+      toast.success(data.payload.message);
+    }
+    else {
+      toast.error(data.payload.message);
+      console.log(data.payload);
+    }
+
   });
   
 }
@@ -99,7 +113,16 @@ const handleDeleteConfirm = (student) => {
   }
 
   useEffect(() => {
-    dispatch(fetchStudents());
+    dispatch(fetchStudents()).then((data) => {
+      if (data.payload.success === true) {
+        toast.success(data.payload.message);
+      }
+      else {
+        toast.error(data.payload.message);
+        console.log(data.payload);
+      }
+    });
+
   }
   , [reload,dispatch])
 

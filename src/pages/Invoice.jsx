@@ -8,6 +8,7 @@ import { addInvoice } from "../store/invoiceSlice";
 import { fetchStudents } from "../store/studentsSlice";
 import { fetchItems } from "../store/itemsSlice";
 import { useCookies } from "react-cookie";
+import toast from "react-hot-toast";
 
 const Invoice = () => {
   const invoiceRef = useRef(null);
@@ -16,12 +17,7 @@ const Invoice = () => {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [cookies, setCookie] = useCookies(['user']);
 
-  useEffect(() => {
-    if(!cookies.user) {
-      window.location.href = '/login';
-    }
-  }
-  , []);
+ 
 
   const [invoice, setInvoice] = useState({
     invoiceNumber: "INV-0001",
@@ -63,11 +59,18 @@ const Invoice = () => {
 
   const handleSubmit = (invoice) => {
    
-    dispatch(addInvoice(invoice)).then(() => {
-      alert("Invoice added successfully");
-      console.log("invoice : ",invoice);
+    dispatch(addInvoice(invoice)).then((data) => {
+      // alert("Invoice added successfully");
+      console.log("invoice : ",invoice);   
+      if (data.payload.success === true) {
+        toast.success("Invoice added successfully");
+      }
+      else {
+        toast.error(data.payload.message);
+        console.log(data.payload);
+      }
+
     }).then(() => {
-      
       resetInvoice();
     });
   };
