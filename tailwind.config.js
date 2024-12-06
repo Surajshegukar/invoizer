@@ -1,3 +1,6 @@
+// Note: This file is used to configure Tailwind CSS. You can learn more about it here: https://tailwindcss.com/docs/configuration
+
+import 'flowbite/plugin';
 
 module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
