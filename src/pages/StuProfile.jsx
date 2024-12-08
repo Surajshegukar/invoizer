@@ -3,6 +3,7 @@ import { BookOpen, Mail, Phone, Calendar, ChevronDown, SectionIcon } from "lucid
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents } from "../store/studentsSlice";
 import { fetchInvoices } from "../store/invoiceSlice";
+import {fetchItems} from "../store/itemsSlice";
 import Template from '../template/Template';
 import { useCookies } from "react-cookie";
 
@@ -17,11 +18,38 @@ export default function StuProfile() {
   const [previewInvoice,setPreviewInvoice] = useState(null);
   const [cookies, setCookie] = useCookies(['user']);
 
+
   // Dummy invoice data
   const invoiceslist = useSelector((state) => state.invoice.invoices);
-  const studentInvoice = invoiceslist.filter(
-    (invoice) => invoice.studentId === selectedStudent._id
-  );
+  const itemsList = useSelector((state) => state.items.items);
+
+  // creating a new array of invoices for the selected student containing studentdetails,invoicedetail and items  details
+
+  const preprocessedInvoices = invoiceslist.map((invoice) => {
+    const student = students.find((student) => student._id === invoice.studentId);
+   
+    return {
+      ...invoice,
+      studentName: student.studentName,
+      studentID: student.studentID,
+      studentClass: student.studentClass,
+      studentContact: student.studentContact,
+      // adding items to the invoice.items array from the itemsList
+      items : invoice.items.map((item) => {
+        const itemDetails = itemsList.find((i) => i._id === item.itemId);
+        return {
+          ...item,
+          ...itemDetails,
+        };
+      }),
+
+    };
+  });
+
+  // filtering the invoices for the selected student
+  
+
+  const studentInvoice = preprocessedInvoices.filter((invoice) => invoice.studentId === selectedStudent._id);
 
   useEffect(() => {
     document.title = `${selectedStudent.name} - Student Profile | Invoizer`;
@@ -29,6 +57,8 @@ export default function StuProfile() {
   useEffect(() => {
     dispatch(fetchStudents());
     dispatch(fetchInvoices());
+    dispatch(fetchItems());
+
   }, []);
 
   useEffect(() => {
@@ -39,11 +69,14 @@ export default function StuProfile() {
   , []);
 
   const handlePreview =(e,invoice)=>{
-    // e.preventDefault();
+    e.preventDefault();
     setPreviewInvoice(invoice);
     setIsPreviewModalOpen(true);
+    console.log(invoice);
 
   }
+
+
 
   return (
     <div className="h-[100vh]">
@@ -166,7 +199,7 @@ export default function StuProfile() {
                 {studentInvoice &&
                   studentInvoice.map((invoice, index) => (
                     <tr
-                      key={invoice.id}
+                      key={invoice._id}
                       className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                     >
                       <td className="py-3 px-4 border-b border-gray-200">
@@ -185,9 +218,7 @@ export default function StuProfile() {
                         <button className="text-red-500">
                           <i class="fa-solid fa-trash hover:bg-slate-400"></i> Delete
                         </button>
-                        <button className="text-green-400" onClick={(e,invoice)=>{
-                            handlePreview(e,invoice);
-                        }}>
+                        <button className="text-green-400" onClick={(e)=>handlePreview(e,invoice)} style={{cursor:"pointer"}}>
                           <i class="fa-regular fa-eye  hover:bg-slate-400"></i> Preview
                         </button>
                       </td>
@@ -198,7 +229,7 @@ export default function StuProfile() {
           </div>
         </div>
       </div>
-      {isPreviewModalOpen && (
+      {isPreviewModalOpen && previewInvoice && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
           <div className="bg-white lg:w-[50vw] w-[90vw] h-[90vh] rounded-lg overflow-x-scroll lg:overflow-x-hidden shadow-lg overflow-y-scroll">
             <div className="flex justify-end p-5">

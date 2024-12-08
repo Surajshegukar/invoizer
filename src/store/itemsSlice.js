@@ -5,6 +5,7 @@ import { token } from '../config';
 
 
 
+
 export const fetchItems = createAsyncThunk('items/fetchItems', async() => {
     
     const response = await fetch(`${base_url}/api/item/get-items`,{
@@ -61,6 +62,22 @@ export const updateItem = createAsyncThunk('items/updateItem', async(item) => {
     return data;
 }
 );
+
+export const addMultipleItems = createAsyncThunk('items/addMultipleItems', async(items) => {
+    const response = await fetch(`${base_url}/api/item/add-multiple-items`, {
+        method: 'POST',
+        body: JSON.stringify(items),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'authorization': token
+        },
+    });
+    const data = await response.json();
+    return data;
+}
+);
+
+
 
 
 export const itemsSlice = createSlice({
@@ -132,8 +149,37 @@ export const itemsSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             });
-    
-    },
+
+            builder.addCase(updateItem.pending, (state) => {
+                state.loading = true;
+            });
+
+            builder.addCase(updateItem.fulfilled, (state, action) => {
+                state.loading = false;
+                state.items = state.items.map((item) => item._id === action.payload._id ? action.payload : item);
+            });
+
+            builder.addCase(updateItem.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
+
+            builder.addCase(addMultipleItems.pending, (state) => {
+                state.loading = true;
+            });
+
+            builder.addCase(addMultipleItems.fulfilled, (state, action) => {
+                state.loading = false;
+                state.items = action.payload;
+            });
+
+            builder.addCase(addMultipleItems.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+
+            }
+        );
+    }
 });
 
 export default itemsSlice.reducer;

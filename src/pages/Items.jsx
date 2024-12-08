@@ -10,6 +10,7 @@ import { useState } from 'react'
 import LoadingModel from './LoadingModel'
 import { useCookies } from 'react-cookie'
 import toast from 'react-hot-toast'
+import { CSVLink } from 'react-csv';
 
 
 function Items() {
@@ -121,6 +122,48 @@ const handleDeleteConfirm = (item) => {
     })
   }
 
+  const ExportCSV = () => {
+    const headers = [
+      { label: "Item", key: "itemName" },
+      { label: "Fees", key: "fees" }
+    ];
+    
+    return (
+      <CSVLink data={itemsList} headers={headers} filename="invoices.csv">
+        <button className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+          <i className="fas fa-download"></i> Export
+        </button>
+      </CSVLink>
+    );
+  }
+
+  const handleItemImport = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target.result;
+      const rows = text.split("\n").slice(1);
+      const items = rows.map((row) => {
+        const [itemName, fees] = row.split(",");
+        return {
+          itemName,
+          fees: Number(fees)
+        }
+      });
+      dispatch(addItem({ items })).then((data) => {
+        setReload(!reload);
+        if (data.payload.success === true) {
+          toast.success("Items imported successfully");
+        }
+        else {
+          console.log(data.payload);
+          toast.error(data.payload.message);
+        }
+      });
+    };
+    reader.readAsText(file);
+  }
+
   useEffect(() => {
     dispatch(fetchItems()).then((data) => {
       if (data.payload.success === true) {
@@ -144,10 +187,19 @@ const handleDeleteConfirm = (item) => {
   return (
     <div className='mx-[10vw]'>
       <h1 className='p-2 my-3 font-bold border-b-2'>Item Table</h1>
-      <div className="flex justify-end">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={
+      <div className="flex justify-end gap-x-2">
+        <div>
+        <button className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={
           () => setIsAddModalOpen(!isAddModalOpen)
         }>Add Item</button>
+        </div>
+
+        <div >
+          <ExportCSV />
+        </div>
+        <div>
+        <input type="file" onChange={handleItemImport} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2" />
+        </div>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="mt-4 flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">

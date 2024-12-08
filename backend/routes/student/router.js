@@ -61,6 +61,54 @@ router.post('/add-student',fetchUser, async(req, res) => {
 }
 );
 
+router.post('/add-multi-students',fetchUser, async(req, res) => {
+    try{
+        const students = req.body.students;
+
+        if(!students){
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
+            });
+        }
+
+        students.forEach(async(student) => {
+            const {studentName, studentContact, studentID, studentClass} = student;
+
+            if(!studentName || !studentContact || !studentID || !studentClass){
+                return res.status(400).json({
+                    success: false,
+                    message: 'All fields are required'
+                });
+            }
+
+            const newStudent = new StudentModel({
+                studentName,
+                studentContact,
+                studentID,
+                studentClass,
+                user: req.id
+            });
+
+            await newStudent.save();
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: 'Students added successfully'
+        });
+    }
+    catch(error){
+        return res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+    }
+}
+);
+
+
+
 router.put('/update-student/:id',fetchUser, async(req, res) => {
     try{
         

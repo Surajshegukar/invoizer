@@ -56,6 +56,61 @@ router.post('/add-invoice',fetchUser, async(req, res) => {
     }
 });
 
+router.post ('/add-multi-invoices',fetchUser, async(req, res) => {
+    try{
+        const invoices = req.body.invoices;
+        if (invoices.length === 0) {
+            return res.status(400).json({
+                success: false,
+                data: 'Invoices are required'
+            });
+        }
+        invoices.forEach(async (invoice) => {
+            const {
+                invoiceNumber,
+                invoiceDate,
+                studentId,
+                items,
+                totalAmount,
+                totalDiscountedAmount,
+                recivedAmount,
+                balanceAmount,
+            } = invoice;
+            if (!invoiceNumber || !invoiceDate || !studentId || !items) {
+                return res.status(400).json({success:false,
+                    data: 'All fields are required' });
+            }
+            if (items.length === 0) {
+                return res.status(400).json({ 
+                    success:false,data: 'Items are required' });
+            }
+            const newInvoice = new InvoiceModel({
+                invoiceNumber,
+                invoiceDate,
+                studentId,
+                items,
+                totalAmount,
+                totalDiscountedAmount,
+                recivedAmount,
+                balanceAmount,
+                user: req.id
+            });
+            await newInvoice.save();
+        });
+        return res.status(200).json({
+            success: true,
+            data: 'Invoices created successfully'
+        });
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            data: error.message
+        });
+    }
+});
+
+
 
 // get all invoices
 router.get('/get-all-invoices',fetchUser, async(req, res) => {

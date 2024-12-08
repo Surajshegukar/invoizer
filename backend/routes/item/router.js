@@ -54,6 +54,39 @@ router.post('/add-item',fetchUser, async(req, res) => {
 }
 );
 
+router.post('/add-multi-items',fetchUser, async(req, res) => {
+    try{
+        const items = req.body.items;
+
+        if(!items){
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
+            });
+        }
+
+        const newItems = items.map(item => {
+            return {
+                itemName: item.itemName,
+                fees: item.fees,
+                user: req.id
+            }
+        });
+
+        const addedItems = await ItemModel.insertMany(newItems);
+        return res.status(200).json({
+            success: true,
+            message: 'Items added successfully',
+            data: addedItems
+        });
+    }catch(error){
+        return res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+    }
+});
+
 router.put('/update-item/:id',fetchUser, async(req, res) => {
     try{
         

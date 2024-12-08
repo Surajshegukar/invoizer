@@ -75,6 +75,8 @@ const Invoice = () => {
     });
   };
 
+  
+
   const resetInvoice = () => {
     setInvoice({
       invoiceNumber: "INV-0001",
