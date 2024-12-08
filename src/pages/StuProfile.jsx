@@ -93,7 +93,7 @@ export default function StuProfile() {
           <div className="relative">
             <select
               id="student-select"
-              value={selectedStudent._id}
+              value={selectedStudent.id}
               aria-placeholder="Select a student"
               onChange={(e) =>
                 setSelectedStudent(
