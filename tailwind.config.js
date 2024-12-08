@@ -1,3 +1,6 @@
+import tailwindcssAnimate from "tailwindcss-animate";
+import flowbitePlugin from "flowbite/plugin";
+
 export default {
   serverModuleFormat: 'cjs',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -69,5 +72,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('flowbite/plugin')],
+  plugins: [tailwindcssAnimate, flowbitePlugin],
 };
