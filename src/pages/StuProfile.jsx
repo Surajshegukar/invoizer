@@ -69,14 +69,6 @@ export default function StuProfile() {
   }
   , []);
 
-  useEffect(() => {
-    if (students.length === 0) {
-      toast.error("No student found");
-      window.location.href = '/students';
-
-    }
-  }, [students]);
-
   const handlePreview =(e,invoice)=>{
     e.preventDefault();
     setPreviewInvoice(invoice);
