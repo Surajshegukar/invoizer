@@ -6,6 +6,7 @@ import { fetchInvoices } from "../store/invoiceSlice";
 import {fetchItems} from "../store/itemsSlice";
 import Template from '../template/Template';
 import { useCookies } from "react-cookie";
+import toast from "react-hot-toast";
 
 
 export default function StuProfile() {
@@ -30,12 +31,12 @@ export default function StuProfile() {
    
     return {
       ...invoice,
-      studentName: student.studentName,
-      studentID: student.studentID,
-      studentClass: student.studentClass,
-      studentContact: student.studentContact,
+      studentName: student?.studentName,
+      studentID: student?.studentID,
+      studentClass: student?.studentClass,
+      studentContact: student?.studentContact,
       // adding items to the invoice.items array from the itemsList
-      items : invoice.items.map((item) => {
+      items : invoice.items?.map((item) => {
         const itemDetails = itemsList.find((i) => i._id === item.itemId);
         return {
           ...item,
@@ -68,6 +69,14 @@ export default function StuProfile() {
   }
   , []);
 
+  useEffect(() => {
+    if (students.length === 0) {
+      toast.error("No student found");
+      window.location.href = '/students';
+
+    }
+  }, [students]);
+
   const handlePreview =(e,invoice)=>{
     e.preventDefault();
     setPreviewInvoice(invoice);
@@ -92,7 +101,7 @@ export default function StuProfile() {
           <div className="relative">
             <select
               id="student-select"
-              value={selectedStudent.id}
+              value={selectedStudent._id}
               aria-placeholder="Select a student"
               onChange={(e) =>
                 setSelectedStudent(
